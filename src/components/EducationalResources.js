@@ -10,7 +10,7 @@ function EducationalResources() {
         <Col md={3} className="mb-4">
           <Card className="shadow-sm border-light rounded">
             <Card.Body>
-            <Card.Title className="text-primary">Coursera</Card.Title>
+              <Card.Title className="text-primary">Coursera</Card.Title>
               <Card.Text>
                 Explore online courses and certifications from top universities and companies.
               </Card.Text>
@@ -57,7 +57,7 @@ function EducationalResources() {
             <Card.Body>
               <Card.Title className="fw-bold text-warning">AWS Training</Card.Title>
               <Card.Text>
-                Learn cloud computing and AWS skills with free and paid training resources.
+                Learn cloud computing, data and AWS skills with free and paid training resources.
               </Card.Text>
               <Button variant="warning" href="https://aws.amazon.com/training/" target="_blank" rel="noopener noreferrer">
                 Visit AWS Training
