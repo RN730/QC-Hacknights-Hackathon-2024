@@ -1,9 +1,9 @@
 import React from 'react';
-import { Container, Button, Jumbotron } from 'react-bootstrap';
+import { Container, Button } from 'react-bootstrap';
 
 function HeroSection() {
   return (
-    <Jumbotron fluid className="bg-success text-white text-center py-5">
+    <div className="bg-success text-white text-center py-5">
       <Container>
         <h1 className="display-4">Find the Right Internship for You</h1>
         <p className="lead">
@@ -13,7 +13,7 @@ function HeroSection() {
           Get Started
         </Button>
       </Container>
-    </Jumbotron>
+    </div>
   );
 }
 
