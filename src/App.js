@@ -3,6 +3,7 @@ import HeroSection from './components/HeroSection';
 import ResumeUpload from './components/ResumeUpload';
 import SkillsComparisonInfo from './components/SkillsComparisonInfo';
 import Footer from './components/Footer';
+import EducationalResources from './components/EducationalResources';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <HeroSection />
       <ResumeUpload />
       <SkillsComparisonInfo />
+      <EducationalResources />
       <Footer />
     </div>
   );
