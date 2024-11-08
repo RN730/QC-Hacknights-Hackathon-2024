@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Container, Form, Button } from 'react-bootstrap';
 
 function ResumeUpload() {
   const [file, setFile] = useState(null);
@@ -11,24 +12,23 @@ function ResumeUpload() {
     e.preventDefault();
     if (file) {
       console.log("Resume uploaded:", file.name);
-      // Here, you would typically handle the file upload to the server
     } else {
       alert("Please upload a resume file!");
     }
   };
 
   return (
-    <section className="resume-upload">
-      <h2>Upload Your Resume</h2>
-      <p>See how your skills stack up for current internship opportunities!</p>
-      <form onSubmit={handleSubmit}>
-        <input type="file" accept=".pdf,.doc,.docx" onChange={handleFileChange} />
-        <button type="submit">Analyze Skills</button>
-      </form>
-    </section>
+    <Container className="my-5">
+      <h2 className="text-center mb-4">Upload Your Resume</h2>
+      <p className="text-center">See how your skills stack up for current internship opportunities!</p>
+      <Form onSubmit={handleSubmit} className="text-center">
+        <Form.Group controlId="formFile" className="mb-3">
+          <Form.Control type="file" onChange={handleFileChange} />
+        </Form.Group>
+        <Button type="submit" variant="success">Analyze Skills</Button>
+      </Form>
+    </Container>
   );
 }
 
 export default ResumeUpload;
-
-
