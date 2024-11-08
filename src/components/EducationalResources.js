@@ -10,7 +10,7 @@ function EducationalResources() {
         <Col md={3} className="mb-4">
           <Card className="shadow-sm border-light rounded">
             <Card.Body>
-              <Card.Title style={{ color: '#0070f3' }} className="fw-bold text-success">Coursera</Card.Title>
+            <Card.Title className="text-primary">Coursera</Card.Title>
               <Card.Text>
                 Explore online courses and certifications from top universities and companies.
               </Card.Text>
