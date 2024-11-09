@@ -5,6 +5,9 @@ const path = require('path');
 const pdfParse = require('pdf-parse');
 const { Document } = require('docx');
 const { Packer } = require('docx');
+const cors = require('cors');
+app.use(cors()); // Enable all CORS requests
+
 
 const app = express();
 const port = 5000;
