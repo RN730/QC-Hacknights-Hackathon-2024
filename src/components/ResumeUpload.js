@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Button, Form, Card, Alert } from 'react-bootstrap';
 
 function ResumeUpload() {
   const [selectedField, setSelectedField] = useState('');
   const [file, setFile] = useState(null);
   const [missingSkills, setMissingSkills] = useState([]);
   const [uploadStatus, setUploadStatus] = useState('');
+  const [error, setError] = useState('');
 
   // Handle file selection
   const handleFileChange = (e) => {
@@ -17,17 +19,18 @@ function ResumeUpload() {
     setSelectedField(e.target.value);
   };
 
-  // Handle the form submission
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!file || !selectedField) {
-      alert("Please select a field and upload a resume.");
+      setError("Please select a field and upload a resume.");
       return;
     }
 
+    setError('');
     const formData = new FormData();
     formData.append('resume', file);
-    formData.append('field', selectedField); // Optionally pass the field as well if needed
+    formData.append('field', selectedField);
 
     setUploadStatus('Uploading...');
 
@@ -38,7 +41,6 @@ function ResumeUpload() {
         },
       });
 
-      // Get missing skills from response
       setMissingSkills(response.data.missingSkills);
       setUploadStatus('Upload successful!');
     } catch (error) {
@@ -48,36 +50,68 @@ function ResumeUpload() {
   };
 
   return (
-    <div className="resume-upload">
-      <h2>Upload Your Resume</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="field">Select Desired Field:</label>
-          <select id="field" value={selectedField} onChange={handleFieldChange} required>
-            <option value="">Select Field</option>
-            <option value="Data Science">Data Science</option>
-            <option value="Software Engineering">Software Engineering</option>
-            <option value="Marketing">Marketing</option>
-            {/* Add more fields as necessary */}
-          </select>
-        </div>
+    <div className="resume-upload container py-5">
+      <h2 className="text-center mb-4">Upload Your Resume</h2>
 
-        <div>
-          <label htmlFor="resume">Upload Resume:</label>
-          <input type="file" id="resume" onChange={handleFileChange} required />
-        </div>
+      <Card className="shadow-lg border-light">
+        <Card.Body>
+          <Form onSubmit={handleSubmit}>
+            {/* Field Selection */}
+            <Form.Group className="mb-3">
+              <Form.Label>Select Desired Field</Form.Label>
+              <Form.Control
+                as="select"
+                value={selectedField}
+                onChange={handleFieldChange}
+                required
+              >
+                <option value="">Select Field</option>
+                <option value="Data Science">Data Science</option>
+                <option value="Software Engineering">Software Engineering</option>
+                <option value="Marketing">Marketing</option>
+                {/* Add more fields as necessary */}
+              </Form.Control>
+            </Form.Group>
 
-        <button type="submit">Upload Resume</button>
-      </form>
+            {/* Resume Upload */}
+            <Form.Group className="mb-3">
+              <Form.Label>Upload Resume (PDF or DOCX)</Form.Label>
+              <Form.Control
+                type="file"
+                onChange={handleFileChange}
+                accept=".pdf, .docx"
+                required
+              />
+            </Form.Group>
 
-      {uploadStatus && <p>{uploadStatus}</p>}
+            {/* Submit Button */}
+            <Button variant="success" type="submit" block>
+              Upload Resume
+            </Button>
+          </Form>
 
+          {uploadStatus && (
+            <div className="mt-3">
+              <Alert variant={uploadStatus.includes('failed') ? 'danger' : 'success'}>
+                {uploadStatus}
+              </Alert>
+            </div>
+          )}
+
+          {/* Error message */}
+          {error && <Alert variant="danger">{error}</Alert>}
+        </Card.Body>
+      </Card>
+
+      {/* Display missing skills */}
       {missingSkills.length > 0 && (
-        <div>
-          <h3>Missing Skills:</h3>
-          <ul>
+        <div className="mt-4">
+          <h3 className="text-center">Missing Skills</h3>
+          <ul className="list-group">
             {missingSkills.map((skill, index) => (
-              <li key={index}>{skill}</li>
+              <li key={index} className="list-group-item">
+                {skill}
+              </li>
             ))}
           </ul>
         </div>

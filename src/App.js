@@ -17,7 +17,7 @@ function App() {
       <HeroSection />
       <AboutUs />
      
-      <JobFieldSelection />
+      
       <ResumeUpload />
       <EducationalResources />
       <Footer />
