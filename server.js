@@ -1,97 +1,64 @@
 const express = require('express');
 const multer = require('multer');
-const fs = require('fs');
-const path = require('path');
-const pdfParse = require('pdf-parse');
-const { Document } = require('docx');
-const { Packer } = require('docx');
 const cors = require('cors');
-app.use(cors()); // Enable all CORS requests
+const path = require('path');
 
-
+// Initialize Express app
 const app = express();
-const port = 5000;
+app.use(cors()); // Enable CORS to allow cross-origin requests from your frontend
 
-// Define storage for uploaded files
+// Set up storage for multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/');
+    cb(null, 'uploads/'); // Save the file in the 'uploads' folder
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
+    cb(null, Date.now() + path.extname(file.originalname)); // Rename file to avoid conflicts
   },
 });
 
-// Set up multer middleware
-const upload = multer({ storage: storage });
+// Initialize multer upload instance
+const upload = multer({ storage });
 
-// Define a list of data science keywords
-const dataScienceKeywords = [
-  "python", "machine learning", "data analysis", "statistics", "deep learning",
-  "data visualization", "tensorflow", "scikit-learn", "pandas", "numpy",
-  "sql", "big data", "hadoop", "spark", "data mining", "modeling",
-  "classification", "regression", "neural networks", "time series",
-  "natural language processing", "reinforcement learning", "decision trees",
-  "data preprocessing", "k-means clustering", "ensemble methods",
-  "random forests", "predictive modeling", "data wrangling", "data cleaning"
-];
-
-// Helper function to parse resume (PDF)
-const parsePDF = async (filePath) => {
-  const dataBuffer = fs.readFileSync(filePath);
-  const data = await pdfParse(dataBuffer);
-  return data.text;
-};
-
-// Helper function to parse resume (DOCX)
-const parseDOCX = async (filePath) => {
-  const data = fs.readFileSync(filePath);
-  const doc = await Document.load(data);
-  const text = doc.getBody().text();
-  return text;
-};
-
-// Endpoint to handle resume upload and keyword matching
-app.post('/upload', upload.single('resume'), async (req, res) => {
-  const filePath = req.file.path;
-  let resumeText = '';
-
-  // Check file type and parse accordingly
-  const fileExtension = path.extname(req.file.originalname).toLowerCase();
-  if (fileExtension === '.pdf') {
-    resumeText = await parsePDF(filePath);
-  } else if (fileExtension === '.docx') {
-    resumeText = await parseDOCX(filePath);
-  } else {
-    return res.status(400).send('Unsupported file format');
-  }
-
-  // Normalize the resume text
-  resumeText = resumeText.toLowerCase();
-
-  // Find matching keywords
-  const matchedSkills = [];
-  const missingSkills = [];
-
-  dataScienceKeywords.forEach((skill) => {
-    if (resumeText.includes(skill)) {
-      matchedSkills.push(skill);
-    } else {
-      missingSkills.push(skill);
-    }
-  });
-
-  // Return the results
-  res.json({
-    matchedSkills,
-    missingSkills
-  });
-});
-
-// Serve the uploaded files (for testing)
+// Middleware to serve static files from the 'uploads' folder
 app.use('/uploads', express.static('uploads'));
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+// Route to handle file uploads
+app.post('/upload', upload.single('resume'), (req, res) => {
+  if (!req.file) {
+    return res.status(400).send('No file uploaded.');
+  }
+
+  // Log the uploaded file for debugging
+  console.log('File uploaded:', req.file);
+
+  // Here, we would process the file (parse and extract skills from the resume).
+  // For now, let's use a mock example of missing skills for Data Science.
+  
+  // Predefined list of skills required for Data Science
+  const requiredSkills = [
+    'Python', 'R', 'SQL', 'Machine Learning', 'Deep Learning', 'Data Analysis',
+    'Data Visualization', 'TensorFlow', 'Keras', 'Natural Language Processing',
+    'Statistics', 'Big Data', 'Data Mining', 'Data Engineering', 'SQL Server',
+    'AWS', 'Hadoop', 'Tableau', 'Power BI', 'Predictive Modeling', 'Data Wrangling',
+    'Business Intelligence', 'Excel', 'Git', 'Docker', 'Cloud Computing', 'Pandas',
+    'Matplotlib', 'Seaborn', 'PyTorch'
+  ];
+
+  // Here you would analyze the uploaded resume and match it against the requiredSkills.
+  // For simplicity, we’ll just return a mock result indicating missing skills.
+  const missingSkills = requiredSkills.filter(skill => {
+    // Here you could check the resume (req.file) for these skills
+    // For now, we're just simulating that the user has only some skills.
+    // Example check: if the resume doesn't contain the skill, it gets added to the missing list.
+    return Math.random() < 0.5; // Randomly "missing" skills
+  });
+
+  // Return the missing skills as a response
+  return res.json({ missingSkills });
+});
+
+// Start the server on port 5000
+app.listen(5000, () => {
+  console.log('Server running on http://localhost:5000');
 });
