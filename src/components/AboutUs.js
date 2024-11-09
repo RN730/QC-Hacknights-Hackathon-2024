@@ -18,6 +18,16 @@ function AboutUs() {
         </Col>
       </Row>
 
+       {/* Our Mission Section */}
+       <Row className="justify-content-center mt-5">
+        <Col md={8}>
+          <h3 className="text-center text-primary">Our Mission</h3>
+          <p className="text-center text-muted">
+            We aim to empower students by providing them with valuable insights into their readiness for internships. By using our app, you’ll have a clearer understanding of the skills you need to develop, giving you a competitive edge in the job market.
+          </p>
+        </Col>
+      </Row>
+
       {/* How It Works Section */}
       <h3 className="text-center text-secondary mb-3">How It Works</h3>
       <Row className="justify-content-center">
@@ -59,15 +69,6 @@ function AboutUs() {
         </Col>
       </Row>
 
-      {/* Our Mission Section */}
-      <Row className="justify-content-center mt-5">
-        <Col md={8}>
-          <h3 className="text-center text-primary">Our Mission</h3>
-          <p className="text-center text-muted">
-            We aim to empower students by providing them with valuable insights into their readiness for internships. By using our app, you’ll have a clearer understanding of the skills you need to develop, giving you a competitive edge in the job market.
-          </p>
-        </Col>
-      </Row>
     </Container>
   );
 }
