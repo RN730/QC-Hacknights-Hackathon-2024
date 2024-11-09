@@ -7,6 +7,10 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.3.3",
+    "docx": "^9.0.3",
+    "express": "^4.21.1",
+    "multer": "^1.4.5-lts.1",
+    "pdf-parse": "^1.1.1",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.5",
     "react-dom": "^18.3.1",
@@ -41,5 +45,10 @@
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.14"
-  }
+  },
+  "description": "THis is a web app geared towards college students.  With how tough and competitive basic internships have gotten, I decided that my peers and I would benifit from a website that can take their resume and comapre it to what comapnies want.  By analayzing a large set of recent internship postings, we can tell the students what skills they might be lacking on thei resume.  Adittionally, we can provide resources such as links to free skill building and certification programs.",
+  "main": "postcss.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
