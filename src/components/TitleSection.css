@@ -1,5 +1,6 @@
 /* TitleSection.css */
 
+/* Title Section */
 .title-section {
   height: 100vh;
   background: linear-gradient(135deg, #1f1c2c, #928dab);
@@ -9,28 +10,25 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  overflow: hidden;
   text-align: center;
-  perspective: 1000px; /* Adding perspective */
 }
 
 .app-title {
-  font-size: 6rem;
+  font-size: 5rem;
   font-weight: 700;
-  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  background: linear-gradient(90deg, #00c6ff, #0072ff); /* Blue gradient */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 10; /* Place above the dodecahedron effect */
+  text-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+  margin-bottom: 20px;
 }
 
 .app-motto {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 300;
   color: rgba(255, 255, 255, 0.85);
   margin-top: 10px;
-  animation: fadeIn 2s ease-in-out;
-  z-index: 10; /* Place above the dodecahedron effect */
+  animation: fadeIn 1.5s ease-in-out;
 }
 
 @keyframes fadeIn {
@@ -44,100 +42,71 @@
   }
 }
 
-/* Dodecahedron-like animation effect */
-.dodecahedron-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 400px;
-  height: 400px;
-  transform-style: preserve-3d;
-  transform-origin: center;
-  transform: translate(-50%, -50%);
-  animation: rotateDodecahedron 20s infinite linear;
-  opacity: 0.6; /* Increased opacity for more visibility */
-  z-index: 1; /* Place behind the title text */
+/* Hexagon container */
+.hexagon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 300px;
+  height: 300px;
+  animation: rotate2dHexagon 8s linear infinite; /* 2D spin animation */
 }
 
-/* Each face */
-.face {
-  position: absolute;
+/* Hexagon Shape */
+.hexagon {
+  position: relative;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle, #ffffff, #00aaff, #0072ff);
-  backface-visibility: hidden;
-  border-radius: 20px;
-  opacity: 0.8;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Rotate each face differently */
-.face:nth-child(1) {
-  transform: rotateY(0deg) rotateX(45deg) translateZ(200px);
-  animation: rotateFace1 18s infinite linear;
+.hexagon-face {
+  position: absolute;
+  width: 30%; /* Smaller faces */
+  height: 30%; /* Smaller faces */
+  background: rgba(255, 255, 255, 0.2); /* Light, translucent color */
+  border-radius: 50%; /* Makes the face circular */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
 }
 
-.face:nth-child(2) {
-  transform: rotateY(72deg) rotateX(45deg) translateZ(200px);
-  animation: rotateFace2 20s infinite linear;
+/* Position each face as part of the 2D hexagon */
+.hexagon-face:nth-child(1) {
+  transform: rotate(0deg) translateY(-120px); /* Larger distance */
 }
 
-.face:nth-child(3) {
-  transform: rotateY(144deg) rotateX(45deg) translateZ(200px);
-  animation: rotateFace3 22s infinite linear;
+.hexagon-face:nth-child(2) {
+  transform: rotate(60deg) translateY(-120px);
 }
 
-.face:nth-child(4) {
-  transform: rotateY(216deg) rotateX(45deg) translateZ(200px);
-  animation: rotateFace4 24s infinite linear;
+.hexagon-face:nth-child(3) {
+  transform: rotate(120deg) translateY(-120px);
 }
 
-.face:nth-child(5) {
-  transform: rotateY(288deg) rotateX(45deg) translateZ(200px);
-  animation: rotateFace5 26s infinite linear;
+.hexagon-face:nth-child(4) {
+  transform: rotate(180deg) translateY(-120px);
 }
 
-.face:nth-child(6) {
-  transform: rotateX(-72deg) rotateY(0deg) translateZ(200px);
-  animation: rotateFace6 28s infinite linear;
+.hexagon-face:nth-child(5) {
+  transform: rotate(240deg) translateY(-120px);
 }
 
-.face:nth-child(7) {
-  transform: rotateX(72deg) rotateY(0deg) translateZ(200px);
-  animation: rotateFace7 30s infinite linear;
+.hexagon-face:nth-child(6) {
+  transform: rotate(300deg) translateY(-120px);
 }
 
-/* Define custom animations for each face */
-@keyframes rotateFace1 {
-  0% { transform: rotateY(0deg) rotateX(45deg) translateZ(200px); }
-  100% { transform: rotateY(360deg) rotateX(405deg) translateZ(200px); }
-}
-
-@keyframes rotateFace2 {
-  0% { transform: rotateY(72deg) rotateX(45deg) translateZ(200px); }
-  100% { transform: rotateY(432deg) rotateX(405deg) translateZ(200px); }
-}
-
-@keyframes rotateFace3 {
-  0% { transform: rotateY(144deg) rotateX(45deg) translateZ(200px); }
-  100% { transform: rotateY(504deg) rotateX(405deg) translateZ(200px); }
-}
-
-@keyframes rotateFace4 {
-  0% { transform: rotateY(216deg) rotateX(45deg) translateZ(200px); }
-  100% { transform: rotateY(576deg) rotateX(405deg) translateZ(200px); }
-}
-
-@keyframes rotateFace5 {
-  0% { transform: rotateY(288deg) rotateX(45deg) translateZ(200px); }
-  100% { transform: rotateY(648deg) rotateX(405deg) translateZ(200px); }
-}
-
-@keyframes rotateFace6 {
-  0% { transform: rotateX(-72deg) rotateY(0deg) translateZ(200px); }
-  100% { transform: rotateX(288deg) rotateY(360deg) translateZ(200px); }
-}
-
-@keyframes rotateFace7 {
-  0% { transform: rotateX(72deg) rotateY(0deg) translateZ(200px); }
-  100% { transform: rotateX(432deg) rotateY(360deg) translateZ(200px); }
+/* 2D Rotation Animation */
+@keyframes rotate2dHexagon {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
