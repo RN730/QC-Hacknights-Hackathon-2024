@@ -42,67 +42,110 @@
   }
 }
 
-/* Hexagon container */
+/* Larger Hexagon container */
 .hexagon-container {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 300px;
-  height: 300px;
-  animation: rotate2dHexagon 8s linear infinite; /* 2D spin animation */
+  width: 500px; /* Increased size */
+  height: 500px; /* Increased size */
+  animation: rotate2dHexagon 7s linear infinite; /* Hexagon rotates in 7 seconds */
+  margin-top: 30px;
 }
 
-/* Hexagon Shape */
+/* Septagon Shape (7 Triangles) */
 .hexagon {
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* Hexagon Face (Triangle) */
 .hexagon-face {
   position: absolute;
-  width: 30%; /* Smaller faces */
-  height: 30%; /* Smaller faces */
-  background: rgba(255, 255, 255, 0.2); /* Light, translucent color */
-  border-radius: 50%; /* Makes the face circular */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  pointer-events: none;
+  width: 110px; /* Triangle size set to 110px */
+  height: 110px;
+  background: linear-gradient(135deg, #d72f4b, #9b0a2d); /* Crimson gradient */
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%); /* Triangle shape */
+  transform-origin: center;
+  opacity: 0.85; /* Adjust opacity for a stronger effect */
 }
 
-/* Position each face as part of the 2D hexagon */
+/* Position each triangular face around the septagon, closer together */
 .hexagon-face:nth-child(1) {
-  transform: rotate(0deg) translateY(-120px); /* Larger distance */
+  transform: rotate(0deg) translateY(-165px); /* Adjusted for 110px size */
 }
 
 .hexagon-face:nth-child(2) {
-  transform: rotate(60deg) translateY(-120px);
+  transform: rotate(51.43deg) translateY(-165px); /* Adjusted for 110px size */
 }
 
 .hexagon-face:nth-child(3) {
-  transform: rotate(120deg) translateY(-120px);
+  transform: rotate(102.86deg) translateY(-165px); /* Adjusted for 110px size */
 }
 
 .hexagon-face:nth-child(4) {
-  transform: rotate(180deg) translateY(-120px);
+  transform: rotate(154.29deg) translateY(-165px); /* Adjusted for 110px size */
 }
 
 .hexagon-face:nth-child(5) {
-  transform: rotate(240deg) translateY(-120px);
+  transform: rotate(205.72deg) translateY(-165px); /* Adjusted for 110px size */
 }
 
 .hexagon-face:nth-child(6) {
-  transform: rotate(300deg) translateY(-120px);
+  transform: rotate(257.15deg) translateY(-165px); /* Adjusted for 110px size */
 }
 
-/* 2D Rotation Animation */
+.hexagon-face:nth-child(7) {
+  transform: rotate(308.58deg) translateY(-165px); /* Adjusted for 110px size */
+}
+
+/* Hide the scroll bar but allow scrolling */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* This hides the scrollbar */
+}
+
+/* For webkit browsers like Chrome and Safari */
+body::-webkit-scrollbar {
+  display: none; /* Hide scrollbar in webkit-based browsers */
+}
+
+body, html {
+  overflow-y: scroll; /* Allow scrolling */
+}
+
+
+
+
+/* Spinning Center Circle */
+.center-circle {
+  position: absolute;
+  width: 70px; /* Center circle set to 70px */
+  height: 70px;
+  background: linear-gradient(45deg, #00c6ff, #0072ff); /* Blue gradient */
+  border-radius: 50%;
+  animation: spinCircle 5s linear infinite; /* Circle spins in 5 seconds */
+}
+
+/* 2D Rotation Animation for Hexagon */
 @keyframes rotate2dHexagon {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Spin Animation for Center Circle */
+@keyframes spinCircle {
   0% {
     transform: rotate(0deg);
   }

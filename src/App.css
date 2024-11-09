@@ -1,3 +1,4 @@
+/* Global Body Styling */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -5,13 +6,15 @@ body {
   background-color: #f9f9f9;
 }
 
+/* Main App Styling */
 .App {
   text-align: center;
 }
 
+/* Hero Section */
 .hero-section {
-  background-color: #4caf50;
-  color: white;
+  background-color: gray;
+  color: gray;
   padding: 40px;
 }
 
@@ -19,6 +22,7 @@ body {
   font-size: 2.5em;
 }
 
+/* Call to Action Button */
 .cta-button {
   padding: 10px 20px;
   font-size: 1em;
@@ -30,6 +34,7 @@ body {
   border-radius: 5px;
 }
 
+/* Resume Upload Section */
 .resume-upload, .skills-info {
   padding: 20px;
 }
@@ -38,6 +43,7 @@ body {
   color: #333;
 }
 
+/* Footer */
 .footer {
   padding: 10px;
   background-color: #333;

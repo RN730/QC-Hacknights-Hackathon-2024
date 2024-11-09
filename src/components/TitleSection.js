@@ -12,6 +12,8 @@ const TitleSection = () => {
           <div className="hexagon-face"></div>
           <div className="hexagon-face"></div>
           <div className="hexagon-face"></div>
+          <div className="hexagon-face"></div>
+          <div class="center-circle"></div>
         </div>
       </div>
       <h1 className="app-title">Skills Match</h1>
